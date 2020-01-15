@@ -4,6 +4,7 @@ class Room:
     def __init__(self, name, description):
         self.name = name
         self.description = description
-
+    def __str__(self):
+        return f"Room: {self.name}"
     def __repr__(self):
-        return 'Name: {self.name}, description: {self.description}'
+        return f"Room({repr(self.name, self.description)})"
