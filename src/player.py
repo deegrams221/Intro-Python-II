@@ -8,3 +8,8 @@ class Player:
         return f"Player: {self.name}"
     def __repr__(self):
         return f"Player({repr(self.name, self.room)})"
+
+# Day 2:
+# Add capability to add `Item`s to the player's inventory. The inventory can
+#   also be a `list` of items "in" the player, similar to how `Item`s can be in a
+#   `Room`.

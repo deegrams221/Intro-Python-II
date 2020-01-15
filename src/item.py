@@ -1,3 +1,4 @@
+# Day 2:
 # Make rooms able to hold multiple items
 # Make the player able to carry multiple items
 # Add items to the game that the user can carry around
@@ -9,8 +10,8 @@
 #   This will be the _base class_ for specialized item types to be declared later.
 
 class Item:
-    def __init__(self, i_name=sword, i_description):
-        self.i_name = i_name
-        self.i_description = i_description
+    def __init__(self, item_name=sword, item_description):
+        self.item_name = item_name
+        self.item_description = iitem_description
     def __repr__(self):
-        return f"{self.i_name}, {self.i_description}"
+        return f"{self.item_name}, {self.item_description}"
