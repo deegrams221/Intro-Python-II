@@ -20,7 +20,6 @@ class Player:
         if item in self.room.items:
             self.room.items.remove(item)
             self.inventory.append(item)
-            # print(self.inventory, "here")
             item.on_take()
         else:
             print("That item is not in this room.")
@@ -37,7 +36,7 @@ class Player:
     def view_inventory(self):
         if len(self.inventory) > 0:
             for i in self.inventory:
-                print(items.name, "hello")
+                print(items.name)
         else:
             print("There are currently no items in your inventory.")
 

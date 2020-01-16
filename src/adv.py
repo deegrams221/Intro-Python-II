@@ -92,8 +92,6 @@ while True:
                 player.room = player.room.e_to
             elif move == 'w':
                 player.room = player.room.w_to
-            # elif move == 'i':
-            #     player.view_inventory()
             # If the user enters "q", quit the game.
             elif move == 'q':
                 print("\nThank you for playing! Goodbye!")
@@ -104,15 +102,11 @@ while True:
             print("\nThis movement is not allowed, please try again.\n")
 
     if len(move) >= 2:
-        # print(move, "here", item.item_name, "here", item)
         print(f'get {item.item_name}')
         try:
             if move == f'get {item.item_name}':
-                # print(player.inventory)
-                # player.inventory = player.add_items
                 player.add_items(item)
-                # print(player.inventory)
-            if move == 'drop {item.item_name}':
+            if move == f'drop {item.item_name}':
                 player.drop_items(item)
         except:
             print("\nPlease enter '\get <item name>\' to add an item to your inventory \nOR '\drop <item name>\' to remove an item from your inventory.")
