@@ -2,25 +2,45 @@ from room import Room
 from player import Player
 from item import Item
 
-# Declare all the rooms
+# Add items to the game that the user can carry around
+# Add `get [ITEM_NAME]` and `drop [ITEM_NAME]` commands to the parser
 
+items = {
+    'sword':    Item("sword",
+                     "Dull sword."),
+    'potion':   Item("potion",
+                     "Health potion."),
+    'book':     Item("book",
+                     "Old weathered book."),
+    'backpack':      Item("backpack",
+                     "Small backpack with rope."),
+    'bag':    Item("bag",
+                     "Small bag filled with 10 gold coins."),
+}
+
+# Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",
+                    [items['backpack']]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""",
+                    [items['book']]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""",
+                    [items['potion']]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""",
+                    [items['sword']]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""",
+                    [items['bag']]),
 }
 
 
@@ -35,6 +55,7 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+
 #
 # Main
 #
@@ -47,12 +68,16 @@ print(f"Great! Your character name is: {player.name}!")
 while True:
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here)
-    print(f"{player.room}, {player.room.description}")
+    print(f"\n{player.room}, {player.room.description}")
+    for item in player.room.items:
+        print(f"\nItems in current room: {item.item_name}")
 # * Waits for user input and decides what to do.
-    move = input("Enter a direction(n, s, e, w) >> ")
+    move = input("\nEnter a direction(n, s, e, w), to exit enter \'q\' >> ")
 # If the user enters a cardinal direction, attempt to move to the room there.
     if len(move) == 1:
         try:
+            if move == 'get {item.item_name}':
+                player.inventory = player.add_items
             if move == 'n':
                 player.room = player.room.n_to
             elif move == 's':
@@ -63,12 +88,12 @@ while True:
                 player.room = player.room.w_to
             # If the user enters "q", quit the game.
             elif move == 'q':
-                print("Thank you for playing! Goodbye!")
+                print("\nThank you for playing! Goodbye!")
                 break
                       # Using break to exit the loop
         # Print an error message if the movement isn't allowed.
         except:
-            print("This movement is not allowed, please try again.")
+            print("\nThis movement is not allowed, please try again.\n")
 
 # Day 2 Instructions:
 # Add a new type of sentence the parser can understand: two words.
