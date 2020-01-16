@@ -14,6 +14,8 @@ class Player:
     def __repr__(self):
         return f"Player({repr(self.name, self.room)})"
 
+#  * If it is there, remove it from the `Room` contents, and add it to the
+#        `Player` contents.
     def add_items(self, item):
         if item in self.room.items:
             self.room.items.remove(item)
@@ -22,6 +24,7 @@ class Player:
         else:
             print("That item is not in this room.")
 
+#  * If it's not there, print an error message telling the user so.
     def drop_items(self, item):
         if item in self.inventory:
             self.inventory.remove(item)

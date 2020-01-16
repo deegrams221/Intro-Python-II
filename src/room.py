@@ -14,6 +14,8 @@ class Room:
     def __repr__(self):
         return f"Room({repr(self.name, self.description)})"
 
+#  If the user enters `get` or `take` followed by an `Item` name, look at the
+#     contents of the current `Room` to see if the item is there.
     def see_room(self):
         print(f"Items in this room: {self.items}")
 
