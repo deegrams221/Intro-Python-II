@@ -73,15 +73,17 @@ while True:
     for item in player.room.items:
         print(f"\nItems in current room: {item.item_name}")
         print("\n***************************************************")
+
+    print(f"\nItems in your inventory:", player.inventory)
+    print("\n***************************************************")
+    # print(player.inventory)
+
 # Waits for user input and decides what to do.
     move = input("\nEnter a direction(n, s, e, w), to exit enter \'q\' >> ").lower()
-# Add `get [ITEM_NAME]` and `drop [ITEM_NAME]` commands to the parser
 
 # If the user enters a cardinal direction, attempt to move to the room there.
     if len(move) == 1:
         try:
-            if move == 'get {item.item_name}':
-                player.inventory = player.add_items
             if move == 'n':
                 player.room = player.room.n_to
             elif move == 's':
@@ -90,6 +92,8 @@ while True:
                 player.room = player.room.e_to
             elif move == 'w':
                 player.room = player.room.w_to
+            # elif move == 'i':
+            #     player.view_inventory()
             # If the user enters "q", quit the game.
             elif move == 'q':
                 print("\nThank you for playing! Goodbye!")
@@ -99,6 +103,19 @@ while True:
         except:
             print("\nThis movement is not allowed, please try again.\n")
 
+    if len(move) >= 2:
+        # print(move, "here", item.item_name, "here", item)
+        print(f'get {item.item_name}')
+        try:
+            if move == f'get {item.item_name}':
+                # print(player.inventory)
+                # player.inventory = player.add_items
+                player.add_items(item)
+                # print(player.inventory)
+            if move == 'drop {item.item_name}':
+                player.drop_items(item)
+        except:
+            print("\nPlease enter '\get <item name>\' to add an item to your inventory \nOR '\drop <item name>\' to remove an item from your inventory.")
 # Day 2 Instructions:
 # Add a new type of sentence the parser can understand: two words.
 # Split the entered command and see if it has 1 or 2 words in it to determine
@@ -108,5 +125,3 @@ while True:
 #   used to pick up `Item`s.
 # * Implement support for the verb `drop` followed by an `Item` name. This is the
 #   opposite of `get`/`take`.
-# * Add the `i` and `inventory` commands that both show a list of items currently
-#   carried by the player.

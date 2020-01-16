@@ -11,8 +11,8 @@ class Player:
     def __str__(self):
         return f"Player: {self.name}"
 
-    def __repr__(self):
-        return f"Player({repr(self.name, self.room)})"
+    # def __repr__(self, name, room):
+    #     return f"Player({repr(self.name, self.room)})"
 
 #  * If it is there, remove it from the `Room` contents, and add it to the
 #        `Player` contents.
@@ -20,6 +20,7 @@ class Player:
         if item in self.room.items:
             self.room.items.remove(item)
             self.inventory.append(item)
+            # print(self.inventory, "here")
             item.on_take()
         else:
             print("That item is not in this room.")
@@ -33,7 +34,15 @@ class Player:
         else:
             print("This item is not in your inventory.")
 
+    def view_inventory(self):
+        if len(self.inventory) > 0:
+            for i in self.inventory:
+                print(items.name, "hello")
+        else:
+            print("There are currently no items in your inventory.")
+
 # Day 2:
 # Add capability to add `Item`s to the player's inventory. The inventory can
 #   also be a `list` of items "in" the player, similar to how `Item`s can be in a
 #   `Room`.
+# Add `get [ITEM_NAME]` and `drop [ITEM_NAME]` commands to the parser
