@@ -72,7 +72,6 @@ while True:
     print(f"\n{player.room}, {player.room.description}")
     for item in player.room.items:
         print(f"\nItems in current room: {item.item_name}")
-        print("\n***************************************************")
 
     print(f"\nItems in your inventory:", player.inventory)
     print("\n***************************************************")
@@ -102,7 +101,6 @@ while True:
             print("\nThis movement is not allowed, please try again.\n")
 
     if len(move) >= 2:
-        print(f'get {item.item_name}')
         try:
             if move == f'get {item.item_name}':
                 player.add_items(item)

@@ -22,7 +22,7 @@ class Item:
 #   `on_take` should print out "You have picked up [NAME]" when you pick up an item.
 #   The `Item` can use this to run additional code when it is picked up.
     def on_take(self):
-        print(f'You have picked up a {self.item_name}, {self.item_description}.')
+        print(f'You have picked up a {self.item_name}.')
 
 # Add an `on_drop` method to `Item`. Implement it similar to `on_take`.
     def on_drop(self):

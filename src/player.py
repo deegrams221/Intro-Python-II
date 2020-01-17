@@ -11,9 +11,6 @@ class Player:
     def __str__(self):
         return f"Player: {self.name}"
 
-    # def __repr__(self, name, room):
-    #     return f"Player({repr(self.name, self.room)})"
-
 #  * If it is there, remove it from the `Room` contents, and add it to the
 #        `Player` contents.
     def add_items(self, item):
